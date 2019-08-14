@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import { search } from './search/reducer';
+import { media } from './media/reducer';
 import { user } from './user/reducer';
 import { watchList } from './watchList/reducer';
 
 export default combineReducers({
 	user,
-	search,
+	media,
     watchList
 });

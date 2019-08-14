@@ -1,7 +1,7 @@
 import * as constants from "../../constants";
-import defaultState from './init'
+import defaultState from './init';
 
-export const search = (state = defaultState, action) => {
+export const media = (state = defaultState, action) => {
   switch (action.type) {
     case constants.SEARCH_MEDIA:
       return {

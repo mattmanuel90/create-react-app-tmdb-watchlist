@@ -73,18 +73,18 @@ export const SearchList = () => {
   const dispatch = useDispatch();
   const [searchText, setSearchText] = useState("");
   const [activePage, setActivePage] = useState(1);
-  const { loading, results, totalPages } = useSelector(state => state.search);
+  const { loading, results, totalPages } = useSelector(state => state.media);
 
   const onSearchChangeHandler = event => {
     const { value } = event.target;
     setSearchText(value);
     setActivePage(1);
-    debouncedSearch(dispatch, actions.search.search(value));
+    debouncedSearch(dispatch, actions.media.search(value));
   };
 
   const pageChangeHandler = (event, { activePage }) => {
     setActivePage(activePage);
-    dispatch(actions.search.search(searchText, activePage));
+    dispatch(actions.media.search(searchText, activePage));
   };
 
   return (
