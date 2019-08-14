@@ -2,9 +2,9 @@ import {
   USER_LOGIN,
   USER_LOGIN_SUCCESS,
   USER_CREATE_SESSION,
-  USER_LOGOUT,
+  USER_LOGOUT
 } from "../../constants";
-import defaultState from './init';
+import defaultState from "./init";
 
 export const user = (state = defaultState, action) => {
   switch (action.type) {
@@ -14,7 +14,7 @@ export const user = (state = defaultState, action) => {
         loading: true
       };
     case USER_LOGIN_SUCCESS:
-      const { requestToken , accountId, accessToken } = action.payload
+      const { requestToken, accountId, accessToken } = action.payload;
       return {
         ...state,
         requestToken,
@@ -25,7 +25,7 @@ export const user = (state = defaultState, action) => {
     case USER_CREATE_SESSION:
       return {
         ...state,
-        sessionId: action.payload.sessionId,
+        sessionId: action.payload.sessionId
       };
     case USER_LOGOUT:
       return {

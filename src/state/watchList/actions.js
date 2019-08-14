@@ -3,10 +3,7 @@ import { keyBy } from "lodash";
 import * as constants from "../../constants";
 
 export const actions = {
-  list: (pageNum = 1) => async (
-    dispatch,
-    getState
-  ) => {
+  list: (pageNum = 1) => async (dispatch, getState) => {
     const {
       user: { accessToken, accountId }
     } = getState();
@@ -20,7 +17,7 @@ export const actions = {
 
     const transformed = data.results.map(i => ({
       id: i.id,
-      year: parseInt(i.first_air_date) || 'n/a',
+      year: parseInt(i.first_air_date) || "n/a",
       title: i.name,
       description: i.overview
     }));

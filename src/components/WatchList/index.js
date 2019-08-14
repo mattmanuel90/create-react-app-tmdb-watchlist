@@ -5,6 +5,24 @@ import { List, Button, Segment } from "semantic-ui-react";
 import { StyledWatchList } from "./styled";
 import { actions } from "../../state";
 
+const WatchListItem = ({ item }) => {
+  const dispatch = useDispatch();
+  return (
+    <List.Item>
+      <List.Header>
+        {item.title} ({item.year})
+      </List.Header>
+      <List.Content>{item.description}</List.Content>
+      <List.Content floated="right">
+        <Button
+          icon="trash alternate"
+          onClick={() => dispatch(actions.watchList.delete(item.id))}
+        />
+      </List.Content>
+    </List.Item>
+  );
+};
+
 export const WatchList = () => {
   const dispatch = useDispatch();
   const { items, loading } = useSelector(state => state.watchList);
@@ -21,18 +39,7 @@ export const WatchList = () => {
       <Segment vertical loading={loading}>
         <List divided size="big">
           {Object.values(items).map(item => (
-            <List.Item key={item.id}>
-              <List.Header>
-                {item.title} ({item.year})
-              </List.Header>
-              <List.Content>{item.description}</List.Content>
-              <List.Content floated="right">
-                <Button
-                  icon="trash alternate"
-                  onClick={() => dispatch(actions.watchList.delete(item.id))}
-                />
-              </List.Content>
-            </List.Item>
+            <WatchListItem key={item.id} item={item} />
           ))}
         </List>
       </Segment>

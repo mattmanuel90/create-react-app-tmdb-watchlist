@@ -8,8 +8,6 @@ import { actions } from "../../state";
 import { SearchList } from "../SearchList";
 import { WatchList } from "../WatchList";
 
-
-
 const CreateAccessToken = ({ history }) => {
   const dispatch = useDispatch();
   useEffect(() => {

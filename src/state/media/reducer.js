@@ -1,5 +1,5 @@
 import * as constants from "../../constants";
-import defaultState from './init';
+import defaultState from "./init";
 
 export const media = (state = defaultState, action) => {
   switch (action.type) {

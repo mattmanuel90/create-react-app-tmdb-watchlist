@@ -5,8 +5,7 @@ import {
   WATCHLIST_ADD_ITEM_COMPLETE,
   WATCHLIST_DELETE_ITEM_COMPLETE
 } from "../../constants";
-import defaultState from './init';
-
+import defaultState from "./init";
 
 export const watchList = (state = defaultState, action) => {
   switch (action.type) {
