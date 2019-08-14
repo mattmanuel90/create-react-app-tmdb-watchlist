@@ -20,7 +20,7 @@ export const api = {
   user: {
     requestToken: async () => {
       const { data = {} } = await instance_v4.post("/auth/request_token", {
-        redirect_to: "http://localhost:3000/callback_success"
+        redirect_to: `${process.env.URL}/callback_success`
       });
       return data;
     },
