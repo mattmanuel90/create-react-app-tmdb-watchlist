@@ -2,25 +2,13 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Menu } from "semantic-ui-react";
 import { BrowserRouter, Route, Switch, Redirect, Link } from "react-router-dom";
-import styled from "styled-components";
-import { actions } from "../../state";
 
+import { StyledHeader } from "./styled";
+import { actions } from "../../state";
 import { SearchList } from "../SearchList";
 import { WatchList } from "../WatchList";
 
-const Header = () => (
-  <StyledHeader>
-    <h2>My Tv Shows</h2>
-    <Menu compact>
-      <Menu.Item>
-        <Link to="/search">Browse</Link>
-      </Menu.Item>
-      <Menu.Item>
-        <Link to="/watchlist">Watch List</Link>
-      </Menu.Item>
-    </Menu>
-  </StyledHeader>
-);
+
 
 const CreateAccessToken = ({ history }) => {
   const dispatch = useDispatch();
@@ -43,14 +31,19 @@ const RequestToken = () => {
   return null;
 };
 
-const StyledHeader = styled.div`
-  display: flex;
-  align-items: center;
-
-  h2 {
-    margin: 0 10px;
-  }
-`;
+const Header = () => (
+  <StyledHeader>
+    <h2>My Tv Shows</h2>
+    <Menu compact>
+      <Menu.Item>
+        <Link to="/search">Browse</Link>
+      </Menu.Item>
+      <Menu.Item>
+        <Link to="/watchlist">Watch List</Link>
+      </Menu.Item>
+    </Menu>
+  </StyledHeader>
+);
 
 export const App = () => {
   const user = useSelector(state => state.user);

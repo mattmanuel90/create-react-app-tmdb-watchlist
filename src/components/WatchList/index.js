@@ -1,13 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { List, Button, Segment, SegmentGroup } from "semantic-ui-react";
-import styled from "styled-components";
+import { List, Button, Segment } from "semantic-ui-react";
 
+import { StyledWatchList } from "./styled";
 import { actions } from "../../state";
-
-const StyledWatchList = styled(SegmentGroup)`
-  padding: 10px;
-`
 
 export const WatchList = () => {
   const dispatch = useDispatch();

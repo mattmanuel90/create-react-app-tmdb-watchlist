@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { debounce } from "lodash";
-import styled from "styled-components";
 import {
   Table,
   Image,
@@ -11,18 +10,10 @@ import {
   Segment
 } from "semantic-ui-react";
 
+import { StyledSearchList } from "./styled";
 import { actions } from "../../state";
 
-const StyledSearchList = styled(Segment.Group)`
-  padding: 10px;
-
-  img {
-    width: 45px;
-    height: 66px;
-  }
-`;
-
-const ShowAction = ({ media }) => {
+const TvShowAction = ({ media }) => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const { items, actionPending } = useSelector(state => state.watchList);
@@ -55,7 +46,7 @@ const ShowAction = ({ media }) => {
   return <Button icon="add" disabled={isLoading} onClick={addActionHandler} />;
 };
 
-const Show = ({ media }) => (
+const TvShow = ({ media }) => (
   <Table.Row>
     <Table.Cell>
       <Image src={media.imageUrl} alt="Poster" />
@@ -65,7 +56,7 @@ const Show = ({ media }) => (
     <Table.Cell>{media.rating}%</Table.Cell>
     <Table.Cell>{media.language}</Table.Cell>
     <Table.Cell>
-      <ShowAction media={media} />
+      <TvShowAction media={media} />
     </Table.Cell>
   </Table.Row>
 );
@@ -103,8 +94,7 @@ export const SearchList = () => {
       </Segment>
       <Segment vertical loading={loading}>
         <Pagination
-          activePage={activePage}
-          totalPages={totalPages}
+          {...{ activePage, totalPages }}
           onPageChange={pageChangeHandler}
         />
         <Table basic="very">
@@ -120,14 +110,13 @@ export const SearchList = () => {
           </Table.Header>
           <Table.Body>
             {Object.values(results).map(item => (
-              <Show key={item.id} media={item} />
+              <TvShow key={item.id} media={item} />
             ))}
           </Table.Body>
         </Table>
         {totalPages > 1 && (
           <Pagination
-            activePage={activePage}
-            totalPages={totalPages}
+            {...{ activePage, totalPages }}
             onPageChange={pageChangeHandler}
           />
         )}

@@ -1,10 +1,5 @@
 import * as constants from "../../constants";
-const defaultState = {
-  results: {},
-  loading: false,
-  pageNum: 1,
-  totalPages: 1
-};
+import defaultState from './init'
 
 export const search = (state = defaultState, action) => {
   switch (action.type) {
