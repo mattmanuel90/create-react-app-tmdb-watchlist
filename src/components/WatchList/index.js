@@ -1,18 +1,17 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { actions } from "../../state";
-import "./style.css";
+import { List, Button, Segment, SegmentGroup } from "semantic-ui-react";
 import styled from "styled-components";
-import { List, Button } from "semantic-ui-react";
 
-const StyledWatchList = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
+import { actions } from "../../state";
+
+const StyledWatchList = styled(SegmentGroup)`
+  padding: 10px;
+`
 
 export const WatchList = () => {
   const dispatch = useDispatch();
-  const items = useSelector(state => state.watchList.items);
+  const { items, loading } = useSelector(state => state.watchList);
 
   useEffect(() => {
     dispatch(actions.watchList.list());
@@ -20,24 +19,27 @@ export const WatchList = () => {
 
   return (
     <StyledWatchList>
-      <h2>Watch List</h2>
-      <List divided size="big">
-        {Object.values(items).map(item => (
-          <List.Item key={item.id}>
-            <List.Header>
-              {item.title} ({item.year})
-            </List.Header>
-            <List.Content>{item.description}</List.Content>
-            <List.Content floated="right">
-              {" "}
-              <Button
-                icon="trash alternate"
-                onClick={() => dispatch(actions.watchList.delete(item.id))}
-              />
-            </List.Content>
-          </List.Item>
-        ))}
-      </List>
+      <Segment vertical>
+        <h2>Watch List</h2>
+      </Segment>
+      <Segment vertical loading={loading}>
+        <List divided size="big">
+          {Object.values(items).map(item => (
+            <List.Item key={item.id}>
+              <List.Header>
+                {item.title} ({item.year})
+              </List.Header>
+              <List.Content>{item.description}</List.Content>
+              <List.Content floated="right">
+                <Button
+                  icon="trash alternate"
+                  onClick={() => dispatch(actions.watchList.delete(item.id))}
+                />
+              </List.Content>
+            </List.Item>
+          ))}
+        </List>
+      </Segment>
     </StyledWatchList>
   );
 };

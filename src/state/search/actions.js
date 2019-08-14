@@ -12,14 +12,14 @@ export const actions = {
 
     const data = await api.media.searchTv(query, pageNum);
 
-    const { page, total_pages, results } = data;
+    const { page, total_pages, results = [] } = data;
 
     const transformed = results.map(i => ({
       id: i.id,
-      year: parseInt(i.first_air_date),
+      year: parseInt(i.first_air_date) || 'n/a',
       title: i.name,
       description: i.overview,
-      rating: i.vote_average,
+      rating: (i.vote_average * 10).toFixed(1),
       language: i.original_language,
       imageUrl: `${TMDB_IMAGE_URL}/${i.poster_path}`,
     }));

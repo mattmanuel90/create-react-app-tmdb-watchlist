@@ -20,7 +20,7 @@ export const actions = {
 
     const transformed = data.results.map(i => ({
       id: i.id,
-      year: parseInt(i.first_air_date),
+      year: parseInt(i.first_air_date) || 'n/a',
       title: i.name,
       description: i.overview
     }));

@@ -9,8 +9,8 @@ import { SearchList } from "../SearchList";
 import { WatchList } from "../WatchList";
 
 const Header = () => (
-  <header>
-    <div>My Tv Shows</div>
+  <StyledHeader>
+    <h2>My Tv Shows</h2>
     <Menu compact>
       <Menu.Item>
         <Link to="/search">Browse</Link>
@@ -19,10 +19,10 @@ const Header = () => (
         <Link to="/watchlist">Watch List</Link>
       </Menu.Item>
     </Menu>
-  </header>
+  </StyledHeader>
 );
 
-export const CreateAccessToken = ({ history }) => {
+const CreateAccessToken = ({ history }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (!localStorage.getItem("user_access_token")) {
@@ -33,7 +33,7 @@ export const CreateAccessToken = ({ history }) => {
   return null;
 };
 
-export const RequestToken = () => {
+const RequestToken = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (!localStorage.getItem("user_request_token")) {
@@ -43,9 +43,12 @@ export const RequestToken = () => {
   return null;
 };
 
-const StyledHeader = styled(Header)`
-  header {
-    display: flex;
+const StyledHeader = styled.div`
+  display: flex;
+  align-items: center;
+
+  h2 {
+    margin: 0 10px;
   }
 `;
 
@@ -64,7 +67,7 @@ export const App = () => {
     <BrowserRouter>
       {user.accountId ? (
         <>
-          <StyledHeader />
+          <Header />
           <Switch>
             <Route exact path="/search" component={SearchList} />
             <Route exact path="/watchlist" component={WatchList} />

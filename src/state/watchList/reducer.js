@@ -8,7 +8,7 @@ import {
 
 const defaultState = {
   items: {},
-  dataIsLoading: false,
+  loading: false,
   actionPending: false
 };
 
@@ -17,14 +17,14 @@ export const watchList = (state = defaultState, action) => {
     case WATCHLIST_LOAD:
       return {
         ...state,
-        dataIsLoading: true
+        loading: true
       };
     case WATCHLIST_LOAD_SUCCESS:
       const { items } = action.payload;
       return {
         ...state,
         items,
-        dataIsLoading: false
+        loading: false
       };
     case WATCHLIST_ACTION_PENDING:
       return {
