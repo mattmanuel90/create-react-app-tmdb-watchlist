@@ -12,3 +12,5 @@ Notes:
 ## Setup
 * npm run start
 
+## TODO
+Move JWT from locale storage into session cookie
