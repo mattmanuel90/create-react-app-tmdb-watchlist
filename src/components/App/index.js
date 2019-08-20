@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { memo, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Menu } from "semantic-ui-react";
 import { BrowserRouter, Route, Switch, Redirect, Link } from "react-router-dom";
@@ -43,7 +43,7 @@ const Header = () => (
   </StyledHeader>
 );
 
-export const App = () => {
+export const App = memo(() => {
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
 
@@ -72,4 +72,4 @@ export const App = () => {
       <Route exact path="/callback_success" component={CreateAccessToken} />
     </BrowserRouter>
   );
-};
+});

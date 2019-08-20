@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { memo, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Table,
@@ -8,7 +8,7 @@ import {
 
 import { actions } from '../../../state'
 
-const TvShowAction = ({ media }) => {
+const TvShowAction = memo(({ media }) => {
     const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(false);
     const { items, actionPending } = useSelector(state => state.watchList);
@@ -39,9 +39,9 @@ const TvShowAction = ({ media }) => {
       );
     }
     return <Button icon="add" disabled={isLoading} onClick={addActionHandler} />;
-  };
+  });
   
-  export const TvShow = ({ media }) => (
+  export const TvShow = memo(({ media }) => (
     <Table.Row>
       <Table.Cell>
         <Image src={media.imageUrl} alt="Poster" />
@@ -54,4 +54,4 @@ const TvShowAction = ({ media }) => {
         <TvShowAction media={media} />
       </Table.Cell>
     </Table.Row>
-  );
+  ));

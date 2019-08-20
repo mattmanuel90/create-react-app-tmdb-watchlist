@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { debounce } from "lodash";
 import {
@@ -20,7 +20,7 @@ const debouncedSearch = debounce(
   { maxWait: 0, leading: false, trailing: true }
 );
 
-const SearchResultsTable = ({ results }) => (
+const SearchResultsTable = memo(({ results }) => (
   <Table basic="very">
     <Table.Header>
       <Table.Row>
@@ -38,9 +38,9 @@ const SearchResultsTable = ({ results }) => (
       ))}
     </Table.Body>
   </Table>
-);
+));
 
-export const SearchList = () => {
+export const SearchList = memo(() => {
   const dispatch = useDispatch();
   const [searchText, setSearchText] = useState("");
   const [activePage, setActivePage] = useState(1);
@@ -78,4 +78,4 @@ export const SearchList = () => {
       </Segment>
     </StyledSearchList>
   );
-};
+});

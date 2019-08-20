@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React, { memo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { List, Button, Segment } from "semantic-ui-react";
 
 import { StyledWatchList } from "./styled";
 import { actions } from "../../state";
 
-const WatchListItem = ({ item }) => {
+const WatchListItem = memo(({ item }) => {
   const dispatch = useDispatch();
   return (
     <List.Item>
@@ -21,9 +21,9 @@ const WatchListItem = ({ item }) => {
       </List.Content>
     </List.Item>
   );
-};
+});
 
-export const WatchList = () => {
+export const WatchList = memo(() => {
   const dispatch = useDispatch();
   const { items, loading } = useSelector(state => state.watchList);
 
@@ -45,4 +45,4 @@ export const WatchList = () => {
       </Segment>
     </StyledWatchList>
   );
-};
+});
